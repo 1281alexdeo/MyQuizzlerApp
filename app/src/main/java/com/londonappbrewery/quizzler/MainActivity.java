@@ -53,16 +53,13 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         if (savedInstanceState != null){
             mScore = savedInstanceState.getInt("scoreKey");
             mIndex = savedInstanceState.getInt("IndexKey");
-
         }else{
             mScore = 0;
             mIndex = 0;
         }
-
         //create link between mTrueButton with the button on the xml file
         mTrueButton = (Button) findViewById(R.id.true_button);
         mFalseButton = (Button) findViewById(R.id.false_button);
@@ -74,6 +71,7 @@ public class MainActivity extends Activity {
 
         mScoreTextView.setText("score" + mScore+ "/" + mQuestionBank.length);
         mTrueButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 checkAnswer(true);
@@ -90,9 +88,6 @@ public class MainActivity extends Activity {
             }
         });
 
-
-
-
     }
     public void updateQuestion(){
         mIndex = (mIndex + 1) % mQuestionBank.length;
@@ -108,8 +103,6 @@ public class MainActivity extends Activity {
                 }
             });
             alert.show();
-
-
         }
         mQuestion  = mQuestionBank[mIndex].getQuestionId();
         mQuestionTextView.setText(mQuestion);
@@ -123,20 +116,15 @@ public class MainActivity extends Activity {
             Log.d("ans", "is correct");
             Toast.makeText(getApplicationContext(), R.string.correct_toast, Toast.LENGTH_SHORT).show();
             mScore = mScore + 1 ;
-            
-
-        }
+                    }
         else {
             Toast.makeText(getApplicationContext(), R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
         }
     }
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("scoreKey",mScore);
         outState.putInt("IndexKey",mIndex);
-
-
     }
 }
